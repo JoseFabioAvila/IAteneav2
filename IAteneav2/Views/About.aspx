@@ -8,11 +8,24 @@
     <p >Conssites en una apliacion que realice un analisis que le permita determinar si en un determinado archivo, grupo de archivos, conjuntos de paginas web, que tema se </p>
     <p>trata segun la categoria y el idioma del mismo. La aplicaion debe aprender por si misma a diferenciar las categorias y el idioma.</p>
     
+    <asp:FileUpload ID="FileUpload1" runat="server" />
+    <asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="btnUpload_Click" />
+    <hr />
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" HeaderStyle-BackColor="#3AC0F2"
+        HeaderStyle-ForeColor="White" RowStyle-BackColor="#A1DCF2">
+        <Columns>
+            <asp:BoundField DataField="FileName" HeaderText="File Name" />
+            <asp:BoundField DataField="CompressedSize" HeaderText="Compressed Size (Bytes)" />
+            <asp:BoundField DataField="UncompressedSize" HeaderText="Uncompressed Size (Bytes)" />
+        </Columns>
+    </asp:GridView>
+
+
     <asp:TextBox ID="TextBox1" runat="server" TextMode="MultiLine" Width="800" Height="800"></asp:TextBox>
     <br />
     <br />
 
-    <asp:TreeView ID="Treeview1" Target="_blank" runat="server">
+    <asp:TreeView ID="Treeview1" Target="_blank" runat="server" ShowCheckBoxes="All">
         <Nodes>
             <asp:TreeNode Text="hola1">
                 <asp:TreeNode  Text="hola1.1">

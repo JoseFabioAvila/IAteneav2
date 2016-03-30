@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ionic.Zip;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
@@ -21,8 +22,19 @@ namespace IAteneav2
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            string path = @"C:\Users\fabio\Documents\Llave8gb\Descargas";
+            string path = @"D:\Datos importantes fabio";
             TextBox1.Text = inst.GetFilesFromDirectory(path);
+        }
+
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            string extractPath = Server.MapPath("~/Files/");
+            using (ZipFile zip = ZipFile.Read(FileUpload1.PostedFile.InputStream))
+            {
+                zip.ExtractAll(extractPath, ExtractExistingFileAction.DoNotOverwrite);
+                GridView1.DataSource = zip.Entries;
+                GridView1.DataBind();
+            }
         }
 
 

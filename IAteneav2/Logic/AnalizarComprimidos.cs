@@ -9,6 +9,9 @@ namespace IAteneav2.Logic
 {
     public class AnalizarComprimidos
     {
+
+
+
         public void openExistingZipFile(string lol)
         {
             int renameCount = 0;

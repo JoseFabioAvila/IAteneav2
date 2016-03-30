@@ -93,6 +93,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -247,7 +248,9 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\AnalizarLocal.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Bundle.config" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
@@ -267,6 +270,7 @@
     <Compile Include="Clases\DifinidorDeCategoria.cs" />
     <Compile Include="Clases\DifinidorDeIdioma.cs" />
     <Compile Include="Clases\Idioma.cs" />
+    <Compile Include="Clases\Nodo.cs" />
     <Compile Include="Clases\Palabra.cs" />
     <Compile Include="Clases\WebSite.cs" />
     <Compile Include="Controllers\CCategorias.cs" />
@@ -360,6 +364,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Comprimidos\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

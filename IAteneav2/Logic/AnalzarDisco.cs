@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Web;
 using DocumentFormat.OpenXml.Packaging;
@@ -28,6 +29,19 @@ namespace IAteneav2.Logic
 
         }
 
+        public string prueba()
+        {
+            string x = "";
+            //string startPath = @"c:\example\start";
+            //string zipPath = @"c:\example\result.zip";
+            //string extractPath = @"c:\example\extract";
+
+            //ZipFile.CreateFromDirectory(startPath, zipPath);
+
+            //ZipFile.ExtractToDirectory(zipPath, extractPath);
+            return x;
+        }
+
         internal void uploadFiles(string v, object fileUploadControl)
         {
             throw new NotImplementedException();
@@ -49,6 +63,8 @@ namespace IAteneav2.Logic
 
         public string GetFilesFromDirectory(string DirPath)
         {
+            LinkedList<Clases.Nodo> ListaNodo = new LinkedList<Clases.Nodo>();
+
             string x = "inicio \n";
             try
             {
