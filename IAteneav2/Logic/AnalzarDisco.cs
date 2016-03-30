@@ -63,7 +63,6 @@ namespace IAteneav2.Logic
 
         public string GetFilesFromDirectory(string DirPath)
         {
-            LinkedList<Clases.Nodo> ListaNodo = new LinkedList<Clases.Nodo>();
 
             string x = "inicio \n";
             try
@@ -88,6 +87,39 @@ namespace IAteneav2.Logic
             catch (Exception ex)
             {
                 return x;
+            }
+        }
+
+        public LinkedList<string> genListFromDirectory(string DirPath)
+        {
+            //LinkedList<Clases.Nodo> ListaNodo = new LinkedList<Clases.Nodo>();
+
+            LinkedList<string> direcciones = new LinkedList<string>();
+
+            string x = "inicio \n";
+            try
+            {
+                DirectoryInfo Dir = new DirectoryInfo(DirPath);
+                DirectoryInfo[] DirList = Dir.GetDirectories();
+                FileInfo[] FileList = Dir.GetFiles("*.*", SearchOption.AllDirectories);
+
+                foreach (DirectoryInfo FI in DirList)
+                {
+                    x += FI.FullName + "\n";
+                }
+                x += "\n\n\n";
+
+                foreach (FileInfo FI in FileList)
+                {
+                    x += FI.FullName + "\n";
+                    direcciones.AddLast(FI.FullName);
+                }
+
+                return direcciones;
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
     }

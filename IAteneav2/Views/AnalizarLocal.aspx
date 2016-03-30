@@ -12,6 +12,7 @@
                 <asp:TableCell>
                     <asp:FileUpload id="FileUploadControl" runat="server"  CssClass="well"/>
                     <br />
+                    <asp:TextBox ID="TextBox2" runat="server" Width="1000"></asp:TextBox>
                     <asp:Button ID="Button1" OnClick="analizarEnDisco" runat="server" Text="Analizar Carpeta o Archivo" CssClass="btn btn-lg btn-success"/>
                 </asp:TableCell>
             </asp:TableRow>

@@ -1,4 +1,5 @@
-﻿using Ionic.Zip;
+﻿using Ionic.BZip2;
+using Ionic.Zip;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,14 +9,17 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+//using ICSharpCode.SharpZipLibZip.UseZip64.Off;
 
 namespace IAteneav2
 {
     public partial class About : Page
     {
+        
 
         Logic.AnalzarDisco inst = new Logic.AnalzarDisco();
 
@@ -28,6 +32,7 @@ namespace IAteneav2
 
         protected void btnUpload_Click(object sender, EventArgs e)
         {
+            BZip2InputStream x;
             string extractPath = Server.MapPath("~/Files/");
             using (ZipFile zip = ZipFile.Read(FileUpload1.PostedFile.InputStream))
             {
@@ -35,6 +40,87 @@ namespace IAteneav2
                 GridView1.DataSource = zip.Entries;
                 GridView1.DataBind();
             }
+        }
+
+
+
+        public static void UnZip(string SrcFile, string DstFile, string safeFileName, int bufferSize)
+        {
+            //ICSharpCode.SharpZipLib.Zip.UseZip64.Off;
+            string path2 = "~/Files";
+
+            FileStream fileStreamIn = new FileStream(SrcFile, FileMode.Open, FileAccess.Read);
+            ZipInputStream zipInStream = new ZipInputStream(fileStreamIn);
+
+
+            string rootDirectory = string.Empty;
+            if (safeFileName.Contains(".zip"))
+            {
+                rootDirectory = safeFileName.Replace(".zip", string.Empty);
+            }
+            else
+            {
+                rootDirectory = safeFileName;
+            }
+            Directory.CreateDirectory(path2 + rootDirectory);
+
+            while (true)
+            {
+                ZipEntry entry = zipInStream.GetNextEntry();
+                if (entry == null)
+                    break;
+
+                if (entry.FileName.Contains("/"))
+                {
+                    string[] folders = entry.FileName.Split('/');
+
+                    string lastElement = folders[folders.Length - 1];
+                    var folderList = new List<string>(folders);
+                    folderList.RemoveAt(folders.Length - 1);
+                    folders = folderList.ToArray();
+
+
+                    string folderPath = "";
+                    foreach (string str in folders)
+                    {
+                        
+                        folderPath = folderPath + "/" + str;
+                        if (!Directory.Exists(path2 + rootDirectory + "/" + folderPath))
+                        {
+                            Directory.CreateDirectory(path2 + rootDirectory + "/" + folderPath);
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(lastElement))
+                    {
+                        folderPath = folderPath + "/" + lastElement;
+                        WriteToFile(DstFile + rootDirectory + @"\" + folderPath, bufferSize, zipInStream, rootDirectory, entry);
+                    }
+
+                }
+                else
+                {
+                    WriteToFile(DstFile + rootDirectory + @"\" + entry.FileName, bufferSize, zipInStream, rootDirectory, entry);
+                }
+            }
+
+            zipInStream.Close();
+            fileStreamIn.Close();
+        }
+
+        private static void WriteToFile(string DstFile, int bufferSize, ZipInputStream zipInStream, string rootDirectory, ZipEntry entry)
+        {
+            FileStream fileStreamOut = new FileStream(DstFile, FileMode.OpenOrCreate, FileAccess.Write);
+            int size;
+            byte[] buffer = new byte[bufferSize];
+
+            do
+            {
+                size = zipInStream.Read(buffer, 0, buffer.Length);
+                fileStreamOut.Write(buffer, 0, size);
+            } while (size > 0);
+
+            fileStreamOut.Close();
         }
 
 
