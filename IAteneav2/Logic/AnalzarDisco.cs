@@ -34,7 +34,7 @@ namespace IAteneav2.Logic
 
         private void enlistar(string texto)
         {
-            string[] palabras = texto.Split(new char[] { ' ', '.', '%', '*', '+', ':', '_', '–', '-', '~', '?', '|', '!', '<', '>', '/', '\'', '=', '{', '}', '[', ']', ';', ',', '"', '(', ')', '$', '^','@', '#', '&', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] palabras = texto.Split(new char[] { ' ', '.', '%', '*', '+', ':', '_', '–', '-', '~', '¿', '?', '|', '!', '<', '>', '/', '\'', '=', '{', '}', '[', ']', ';', ',', '"', '(', ')', '$', '^','@', '#', '&', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string palabra in palabras)
             {
                 palabrasDirectorios.AddLast(palabra);
