@@ -11,6 +11,9 @@ namespace IAteneav2.Logic
 {
     public class AnalzarDisco
     {
+
+        public LinkedList<string> palabrasDirectorios = new LinkedList<string>();
+
         /// <summary>
         /// Crea el directorio docs si no existe, si existe no hace nada
         /// </summary>
@@ -29,6 +32,53 @@ namespace IAteneav2.Logic
 
         }
 
+        private void enlistar(string texto)
+        {
+            string[] palabras = texto.Split(new char[] { ' ', '.', '%', '*', '+', ':', '_', '–', '-', '~', '?', '|', '!', '<', '>', '/', '\'', '=', '{', '}', '[', ']', ';', ',', '"', '(', ')', '$', '^','@', '#', '&', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string palabra in palabras)
+            {
+                palabrasDirectorios.AddLast(palabra);
+            }
+        }
+
+        public string leerArchivo(string archivo)
+        {
+            string res = "";
+            if (archivo.Contains(".txt"))
+            {
+                string line = "";
+                res += "\n\n";
+                try
+                {
+                    StreamReader sr = new StreamReader(archivo);
+                    
+                    line = sr.ReadLine();
+                    while (line != null)
+                    {
+                        res = line.ToString();
+                        line = sr.ReadLine(); //pasar a la siguiente linea
+                    }
+                    res += "\n\n";
+                    enlistar(res);
+                    sr.Close();
+                }
+                catch (Exception e)
+                {
+                    res += "\nerror xDDD\n";
+                }
+            }
+            else if (archivo.Contains(".docx") || archivo.Contains(".docx"))
+            {
+                res += "\n" + OpenWordprocessingDocumentReadonly(archivo) + "\n";
+                enlistar(res);
+            }
+            else
+            {
+                res += "\nNo es leible\n";
+            }
+            return res;
+        }
+
         public string prueba()
         {
             string x = "";
@@ -41,12 +91,13 @@ namespace IAteneav2.Logic
             //ZipFile.ExtractToDirectory(zipPath, extractPath);
             return x;
         }
+        
 
-        internal void uploadFiles(string v, object fileUploadControl)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// Abre un archivo .docx o .doc y obtiene su contenido.
+        /// </summary>
+        /// <param name="filepath">direccion del archivo</param>
+        /// <returns>el contenido del archivo</returns>
         public String OpenWordprocessingDocumentReadonly(string filepath)
         {
             // Open a WordprocessingDocument based on a filepath.
@@ -61,6 +112,11 @@ namespace IAteneav2.Logic
             }
         }
 
+        /// <summary>
+        /// Obtinene las direcciones de los archivos en el directorio especificado
+        /// </summary>
+        /// <param name="DirPath">direccion del directorio</param>
+        /// <returns>nombre de los archivos en el directorio</returns>
         public string GetFilesFromDirectory(string DirPath)
         {
 
@@ -90,6 +146,11 @@ namespace IAteneav2.Logic
             }
         }
 
+        /// <summary>
+        /// Genera la lista de direcciones de los archivos 
+        /// </summary>
+        /// <param name="DirPath">direccion del directorio a analizar</param>
+        /// <returns>lista de direcciones</returns>
         public LinkedList<string> genListFromDirectory(string DirPath)
         {
             //LinkedList<Clases.Nodo> ListaNodo = new LinkedList<Clases.Nodo>();
