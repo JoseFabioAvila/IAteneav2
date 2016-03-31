@@ -262,11 +262,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Clases\CargaRapida.cs" />
     <Compile Include="Clases\Categoria.cs" />
     <Compile Include="Clases\Clasificador.cs" />
     <Compile Include="Clases\DifinidorDeCategoria.cs" />
     <Compile Include="Clases\DifinidorDeIdioma.cs" />
     <Compile Include="Clases\Idioma.cs" />
+    <Compile Include="Clases\NaiveBayes.cs" />
     <Compile Include="Clases\Palabra.cs" />
     <Compile Include="Clases\WebSite.cs" />
     <Compile Include="Controllers\CCategorias.cs" />

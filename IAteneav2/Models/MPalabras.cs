@@ -48,8 +48,9 @@ namespace IAteneav2.Models
             return lista;
         }
 
-        public bool agregarPalabra(string palabra, int idioma)
+        public bool agregarPalabra(string palabra, Idioma i)
         {
+            int idioma = i.ID;
             bool isConected = conexion.conectarServer();
             bool respuesta = false;
 

@@ -130,6 +130,7 @@ namespace IAteneav2
                     text += word + " "; // "\n\n";
                 }
                 TextBox1.Text = text;
+
             }
             else
             {

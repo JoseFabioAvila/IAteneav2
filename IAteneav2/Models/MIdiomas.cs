@@ -79,5 +79,41 @@ namespace IAteneav2.Models
             }
             return respuesta;
         }
+
+        // Seleccionar idioma
+        public Idioma Select(int id)
+        {
+            Idioma result = null;
+            try
+            {
+                if (conexion.conectarServer())
+                {
+                    string sql = @"SELECT* FROM Idioma WHERE ID = " + id + "; ";
+                    using (var command = new SqlCommand(sql, conexion.Conexionc))
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            var list = new List<Idioma>();
+                            while (reader.Read())
+                            {
+                                Idioma i = new Idioma();
+                                i.setID(reader.GetByte(0));
+                                i.setNom(reader.GetString(1));
+                                result = i;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                String MostrarError = "Mensaje de la excepcio: " + ex.Message.ToString();
+            }
+            finally
+            {
+                conexion.desconectar();
+            }
+            return result;
+        }
     }
 }
