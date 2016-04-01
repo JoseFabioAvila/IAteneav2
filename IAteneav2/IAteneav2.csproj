@@ -203,6 +203,7 @@
     <Content Include="Views\About.aspx" />
     <Content Include="Views\AnalizarMM.aspx" />
     <Content Include="Views\AnalizarRed.aspx" />
+    <Content Include="Views\AnalizarTexto.aspx" />
     <Content Include="Views\Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -286,6 +287,7 @@
     <Compile Include="Logic\AnalizarComprimidos.cs" />
     <Compile Include="Logic\AnalizarWebsites.cs" />
     <Compile Include="Logic\AnalzarDisco.cs" />
+    <Compile Include="Logic\AnalzarTextos.cs" />
     <Compile Include="Logic\Conexion.cs" />
     <Compile Include="Models\MDifinidoresDeIdioma.cs" />
     <Compile Include="Models\MCategorias.cs" />
@@ -316,6 +318,13 @@
     </Compile>
     <Compile Include="Views\AnalizarRed.aspx.designer.cs">
       <DependentUpon>AnalizarRed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AnalizarTexto.aspx.cs">
+      <DependentUpon>AnalizarTexto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AnalizarTexto.aspx.designer.cs">
+      <DependentUpon>AnalizarTexto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>

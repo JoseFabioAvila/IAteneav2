@@ -32,11 +32,15 @@ namespace IAteneav2.Logic
 
         }
 
+        /// <summary>
+        /// Toma cada palabra en el texto y la agrega a la lista
+        /// </summary>
+        /// <param name="texto">es el texto tomado de un archivo</param>
         private void enlistar(string texto)
         {
             string[] palabras = texto.Split(new char[] { ' ', '.', '%', '*', '+', ':', '_', '–', '-', '~', '¿', '?', '|', '!', '<', '>', '/', '\'', '=', '{', '}', '[', ']', ';', ',', '"', '(', ')', '$', '^','@', '#', '&', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string palabra in palabras)
-            {
+            { 
                 palabrasDirectorios.AddLast(palabra);
             }
         }
