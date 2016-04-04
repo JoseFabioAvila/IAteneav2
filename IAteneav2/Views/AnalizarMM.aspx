@@ -10,7 +10,7 @@
             </asp:TableHeaderRow>
             <asp:TableRow>
                 <asp:TableCell>
-                    <asp:FileUpload id="FileUploadControl" runat="server"  CssClass="well"/>
+                    <asp:TextBox ID="TextBox2" runat="server" Width="1000"></asp:TextBox>
                     <br />
                     <asp:Button ID="AnalizarAMM" OnClick="analizarArchivosMM" runat="server" Text="Analizar archivos de mensajes masivos" CssClass="btn btn-lg btn-success"/>
                 </asp:TableCell>

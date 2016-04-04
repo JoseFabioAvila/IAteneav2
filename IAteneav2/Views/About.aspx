@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="IAteneav2.About" %>
+
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <%@ Import Namespace="System.IO" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
@@ -25,6 +27,10 @@
     <br />
     <br />
 
+    
+
+    <br />
+    <br />
     <asp:TreeView ID="Treeview1" Target="_blank" runat="server" ShowCheckBoxes="All">
         <Nodes>
             <asp:TreeNode Text="hola1">
