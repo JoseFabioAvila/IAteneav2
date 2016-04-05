@@ -1,4 +1,5 @@
 ﻿using ICSharpCode.SharpZipLib.BZip2;
+using ICSharpCode.SharpZipLib.Core;
 using Ionic.Zip;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -38,7 +39,7 @@ namespace IAteneav2.Logic
         {
             try {
                 BZip2InputStream x;
-                string extractPath = @"C:\Users\fabio\OneDrive\comprimidos";
+                string extractPath = @"C:\comprimidos";
                 using (ZipFile zip = ZipFile.Read(archivo))
                 {
                     zip.ExtractAll(extractPath, ExtractExistingFileAction.DoNotOverwrite);
@@ -49,23 +50,26 @@ namespace IAteneav2.Logic
             {
                 return "error";
             }
-            //int renameCount = 0;
-            //using (ZipFile zip2 = ZipFile.Read(lol))
-            //{
-            //    foreach (ZipEntry e in zip2)
-            //    {
-            //        if (e.FileName.EndsWith(".txt"))
-            //        {
-            //            var newname = "renamed_files\\" + e.FileName;
+        }
 
-            //            e.FileName = newname;
-            //            e.Comment = "renamed";
-            //            renameCount++;
-            //        }
-            //    }
-            //    zip2.Comment = String.Format("This archive has been modified. {0} files have been renamed.", renameCount);
-            //    zip2.Save();
-            //}
+        /// <summary>
+        /// descomprime archivo bz2
+        /// </summary>
+        /// <param name="archivo">el archivo a descomprimir</param>
+        /// <param name="ruta">ruta en donde se va a descomprimir</param>
+        public void descomprimirBzip2(String archivo, String ruta)
+        {
+            var buffer = new byte[4096];
+            using (Stream streamIn = new FileStream(archivo, FileMode.Open, FileAccess.Read))
+            using (var gzipStream = new BZip2InputStream(streamIn))
+            {
+                var fileName = Path.GetFileNameWithoutExtension(archivo);
+                var path = Path.Combine(ruta, fileName);
+                using (var fileStreamOut = File.Create(path))
+                {
+                    StreamUtils.Copy(gzipStream, fileStreamOut, buffer);
+                }
+            }
         }
 
 
@@ -77,16 +81,18 @@ namespace IAteneav2.Logic
             //StreamReader file = File.OpenText(dir);
             using (StreamReader r = new StreamReader(dir))
             {
-                string json = r.ReadToEnd();
+                string archivo = r.ReadToEnd();
 
-                dynamic result = JsonConvert.DeserializeObject(json);
+                //dynamic result = JsonConvert.DeserializeObject(archivo);
+                string[] jsons = archivo.Split(new char[] {'\n'}, StringSplitOptions.RemoveEmptyEntries);
                 var urls = new List<string>();
                 //result = result.ToString().Substring(1, result.ToString().Length - 2);
                 string x = "";
-                foreach (var file2 in result.twet.files)
+                foreach (var json in jsons)
                 {
                     //urls.Add(result.text);
-                    x += file2.text;
+                    dynamic json2 = JsonConvert.DeserializeObject(json);
+                    x += json2.text+"\n";
                 }
 
                 //return o1.ToString();

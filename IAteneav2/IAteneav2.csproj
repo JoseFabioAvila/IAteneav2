@@ -47,6 +47,10 @@
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
@@ -202,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\About.aspx" />
+    <Content Include="Views\AnalizarFacebook.aspx" />
     <Content Include="Views\AnalizarMM.aspx" />
     <Content Include="Views\AnalizarRed.aspx" />
     <Content Include="Views\AnalizarTexto.aspx" />
@@ -290,6 +295,7 @@
     <Compile Include="Logic\AnalzarDisco.cs" />
     <Compile Include="Logic\AnalzarTextos.cs" />
     <Compile Include="Logic\Conexion.cs" />
+    <Compile Include="Logic\FacebookPosts.cs" />
     <Compile Include="Models\MDifinidoresDeIdioma.cs" />
     <Compile Include="Models\MCategorias.cs" />
     <Compile Include="Models\MDifinidoresDeCategoria.cs" />
@@ -306,6 +312,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Views\AnalizarFacebook.aspx.cs">
+      <DependentUpon>AnalizarFacebook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AnalizarFacebook.aspx.designer.cs">
+      <DependentUpon>AnalizarFacebook.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\AnalizarMM.aspx.cs">
       <DependentUpon>AnalizarMM.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

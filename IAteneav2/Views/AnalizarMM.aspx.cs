@@ -17,14 +17,21 @@ namespace IAteneav2.Views
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ins.checkDirectory(@"C:\Users\fabio\OneDrive\comprimidos");
+            ins.checkDirectory(@"C:\comprimidos");
         }
 
         protected void analizarArchivosMM(object sender, EventArgs e)
         {
-            //ins.openExistingZipFile(@"C:\Users\fabio\OneDrive\twitter-stream-2011-09-27.zip");
-            //TextBox1.Text = ins.openExistingZipFile(TextBox2.Text);
-            TextBox1.Text = ins.blabla(TextBox2.Text);
+            //D:\OneDrive\twitter-stream-2011-09-27.zip
+
+            //descomprime archivos zip
+            TextBox1.Text = ins.openExistingZipFile(TextBox2.Text);
+
+            //descomprime archivos bz2
+            ins.descomprimirBzip2(@"C:\comprimidos\27\19\48.json.bz2", @"C:\comprimidos\27\19\");
+
+            //lee el contenido de un json
+            //TextBox1.Text = ins.blabla(TextBox2.Text);
 
         }
 
