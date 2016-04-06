@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AnalizarLocal.aspx.cs" Inherits="IAteneav2.Views.Results" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    
-    <br />
-    <br />
+
     <div class="well">
         <asp:Table ID="Table2" runat="server">
             <asp:TableHeaderRow>
@@ -14,8 +12,9 @@
                 <asp:TableCell>
                     <asp:FileUpload id="FileUploadControl" runat="server"  CssClass="well"/>
                     <br />
-                    <asp:TextBox ID="TextBox2" runat="server" Width="1000"></asp:TextBox>
                     <asp:Button ID="Button1" OnClick="analizarEnDisco" runat="server" Text="Analizar Carpeta o Archivo" CssClass="btn btn-lg btn-success"/>
+                    <br />
+                    <asp:Button ID="Button2" OnClick="guardar" runat="server" Text="Guardar Palabras" CssClass="btn btn-lg btn-success"/>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>

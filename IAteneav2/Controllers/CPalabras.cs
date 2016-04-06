@@ -8,16 +8,16 @@ namespace IAteneav2.Controllers
     public class CPalabras
     {
         Models.MPalabras ins = new Models.MPalabras();
+        Models.MIdiomas leng = new Models.MIdiomas();
 
-        public LinkedList<Clases.Palabra> getPalabras()
+        public Clases.Palabra[] getPalabras()
         {
-            LinkedList<Clases.Palabra> lista = new LinkedList<Clases.Palabra>();
-            lista = ins.getPalabras();
-            return lista;
+            return ins.Selectall();
         }
 
-        public bool agregarPalabra(string palabra, int idioma)
+        public bool agregarPalabra(string palabra, int i)
         {
+            Clases.Idioma idioma = leng.Select(i);
             return ins.agregarPalabra(palabra,idioma);
         }
     }

@@ -71,18 +71,34 @@ namespace IAteneav2.Logic
         {
             LinkedList<String> lista = new LinkedList<string>();
 
+            //string pagina = getHTMLFrom(url);
+            //// Split string on spaces. This will separate all the words in a string
+            //string[] words = pagina.Split(new char[] {'<', '>',}, StringSplitOptions.RemoveEmptyEntries);
+            //foreach (string word in words)
+            //{
+            //    lista.AddLast(word);
+            //}
+
             HtmlNodeCollection pagina2 = Parsing(url);
             string pagina = "";
             foreach (HtmlNode pag in pagina2)
             {
                 pagina += (" " + pag.InnerText);
             }
-            string[] words2 = pagina.Split(new char[] { ' ', '.', '%', '*', '+', ':', '_', '–', '-', '~', '¿', '?', '|', '!', '<', '>', '/', '\'', '=', '{', '}', '[', ']', ';', ',', '"', '(', ')', '$', '^', '@', '#', '&', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] words2 = pagina.Split(new char[] { ' ', '.', '%', '*', '+', ':', '_', '|', '!', '<', '>', '/', '=', '{', '}', '[', ']', ';', ',', '"', '(', ')', '#', '&' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string word in words2)
             {
                 lista.AddLast(word);
             }
             return lista;
+
+            //string pagina = Parsing(url);
+            //string[] words2 = pagina.Split(new char[] { ' ', '.', '%', '*', '+', ':', '_', '|', '!', '<', '>', '/', '=', '{', '}', '[', ']', ';', ',', '"', '(', ')', '#', '&'}, StringSplitOptions.RemoveEmptyEntries);
+            //foreach (string word in words2)
+            //{
+            //    lista.AddLast(word);
+            //}
+            //return lista;
         }
     }
 }
