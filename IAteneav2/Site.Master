@@ -53,12 +53,11 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/Views/AnalizarWS">Analizar Web Sites</a></li>
+                        <li><a runat="server" href="~/Views/AnalizarTexto">Analizar Texto</a></li>
                         <li><a runat="server" href="~/Views/AnalizarLocal">Analizar Localmente</a></li>
-                        <li><a runat="server" href="~/Views/AnalizarRed">Analizar red</a></li>
                         <li><a runat="server" href="~/Views/AnalizarMM">Analizar Mensajes Masivos</a></li>
-
-                        <li><a runat="server" href="~/Views/About">Acerca de</a></li>
-                        <li><a runat="server" href="~/Views/Contact">Contacto</a></li>
+                        <li><a runat="server" href="~/Views/AnalizarFacebook">Analizar Facebook</a></li>
+                        <li><a runat="server" href="~/Views/AnalizarRed">Analizar red</a></li>
                         
                     </ul>
                 </div>
@@ -72,7 +71,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - IAtenea</p>
+                <p>&copy; <%: DateTime.Now.Year %> - IAtenea - by - Jose Pablo Gamboa - Jose Fabio Avila</p>
             </footer>
         </div>
     </form>

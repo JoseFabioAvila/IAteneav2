@@ -47,8 +47,16 @@
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.5.0, Culture=neutral, PublicKeyToken=9dea7c6e17aa31ff, processorArchitecture=MSIL">
+      <HintPath>..\packages\ICSharpCode.SharpZipLib.Patched.0.86.5\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ionic.Zip, Version=1.9.8.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
@@ -93,6 +101,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -195,10 +205,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\About.aspx" />
+    <Content Include="Views\AnalizarFacebook.aspx" />
     <Content Include="Views\AnalizarMM.aspx" />
     <Content Include="Views\AnalizarRed.aspx" />
-    <Content Include="Views\Contact.aspx" />
+    <Content Include="Views\AnalizarTexto.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -247,7 +257,9 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\AnalizarLocal.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Bundle.config" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
@@ -267,6 +279,7 @@
     <Compile Include="Clases\DifinidorDeCategoria.cs" />
     <Compile Include="Clases\DifinidorDeIdioma.cs" />
     <Compile Include="Clases\Idioma.cs" />
+    <Compile Include="Clases\Nodo.cs" />
     <Compile Include="Clases\Palabra.cs" />
     <Compile Include="Clases\WebSite.cs" />
     <Compile Include="Controllers\CCategorias.cs" />
@@ -278,23 +291,25 @@
     <Compile Include="Logic\AnalizarComprimidos.cs" />
     <Compile Include="Logic\AnalizarWebsites.cs" />
     <Compile Include="Logic\AnalzarDisco.cs" />
+    <Compile Include="Logic\AnalzarTextos.cs" />
     <Compile Include="Logic\Conexion.cs" />
+    <Compile Include="Logic\FacebookPosts.cs" />
     <Compile Include="Models\MDifinidoresDeIdioma.cs" />
     <Compile Include="Models\MCategorias.cs" />
     <Compile Include="Models\MDifinidoresDeCategoria.cs" />
     <Compile Include="Models\MIdiomas.cs" />
     <Compile Include="Models\MPalabras.cs" />
     <Compile Include="Models\MWebSites.cs" />
-    <Compile Include="Views\About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Views\AnalizarFacebook.aspx.cs">
+      <DependentUpon>AnalizarFacebook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AnalizarFacebook.aspx.designer.cs">
+      <DependentUpon>AnalizarFacebook.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\AnalizarMM.aspx.cs">
       <DependentUpon>AnalizarMM.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -309,12 +324,12 @@
     <Compile Include="Views\AnalizarRed.aspx.designer.cs">
       <DependentUpon>AnalizarRed.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="Views\AnalizarTexto.aspx.cs">
+      <DependentUpon>AnalizarTexto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="Views\AnalizarTexto.aspx.designer.cs">
+      <DependentUpon>AnalizarTexto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\AnalizarWS.aspx.cs">
       <DependentUpon>AnalizarWS.aspx</DependentUpon>
@@ -360,6 +375,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Comprimidos\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

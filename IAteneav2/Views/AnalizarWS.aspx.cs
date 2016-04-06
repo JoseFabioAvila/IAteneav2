@@ -127,7 +127,7 @@ namespace IAteneav2
                 string text = "";
                 foreach (string word in lista)
                 {
-                    text += word + " "; // "\n\n";
+                    text += word + "\n\n"; // "\n\n";
                 }
                 TextBox1.Text = text;
             }

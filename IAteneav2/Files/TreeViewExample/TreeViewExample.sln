@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TreeViewExample", "..\..\..\..\..\..\TreeViewExample\", "{D250D556-C656-4F52-AE68-A9FEAAFC5B12}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFramework = "3.5"
+		Debug.AspNetCompiler.VirtualPath = "/TreeViewExample"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\TreeViewExample\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\TreeViewExample\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/TreeViewExample"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\TreeViewExample\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\TreeViewExample\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "61751"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D250D556-C656-4F52-AE68-A9FEAAFC5B12}.Debug|.NET.ActiveCfg = Debug|.NET
+		{D250D556-C656-4F52-AE68-A9FEAAFC5B12}.Debug|.NET.Build.0 = Debug|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AnalizarMM.aspx.cs" Inherits="IAteneav2.Views.AnalizarMM" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    
+    <br />
+    <br />
     <div class="well">
         <asp:Table ID="Table2" runat="server">
             <asp:TableHeaderRow>
@@ -10,6 +14,8 @@
             </asp:TableHeaderRow>
             <asp:TableRow>
                 <asp:TableCell>
+                    <asp:TextBox ID="TextBox2" runat="server" Width="1000"></asp:TextBox>
+                    <br />
                     <asp:Button ID="AnalizarAMM" OnClick="analizarArchivosMM" runat="server" Text="Analizar archivos de mensajes masivos" CssClass="btn btn-lg btn-success"/>
                 </asp:TableCell>
             </asp:TableRow>
@@ -32,5 +38,16 @@
             </asp:TableRow>
         </asp:Table>
     </div>
+    <%--<div>
+        <asp:Chart ID="Chart1" runat="server">
+            <Series>
+                <asp:Series Name="Series1"></asp:Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+            </ChartAreas>
+        </asp:Chart>
+    </div>--%>
+    
 
 </asp:Content>
