@@ -56,9 +56,6 @@
                         <li><a runat="server" href="~/Views/AnalizarLocal">Analizar Localmente</a></li>
                         <li><a runat="server" href="~/Views/AnalizarRed">Analizar red</a></li>
                         <li><a runat="server" href="~/Views/AnalizarMM">Analizar Mensajes Masivos</a></li>
-
-                        <li><a runat="server" href="~/Views/About">Acerca de</a></li>
-                        <li><a runat="server" href="~/Views/Contact">Contacto</a></li>
                         
                     </ul>
                 </div>

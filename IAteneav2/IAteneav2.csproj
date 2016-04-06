@@ -195,10 +195,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\About.aspx" />
     <Content Include="Views\AnalizarMM.aspx" />
     <Content Include="Views\AnalizarRed.aspx" />
-    <Content Include="Views\Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -268,7 +266,7 @@
     <Compile Include="Clases\DifinidorDeCategoria.cs" />
     <Compile Include="Clases\DifinidorDeIdioma.cs" />
     <Compile Include="Clases\Idioma.cs" />
-    <Compile Include="Clases\NaiveBayes.cs" />
+    <Compile Include="Logic\NaiveBayes.cs" />
     <Compile Include="Clases\Palabra.cs" />
     <Compile Include="Clases\WebSite.cs" />
     <Compile Include="Controllers\CCategorias.cs" />
@@ -281,19 +279,13 @@
     <Compile Include="Logic\AnalizarWebsites.cs" />
     <Compile Include="Logic\AnalzarDisco.cs" />
     <Compile Include="Logic\Conexion.cs" />
+    <Compile Include="Logic\RecopiladorDePalabras.cs" />
     <Compile Include="Models\MDifinidoresDeIdioma.cs" />
     <Compile Include="Models\MCategorias.cs" />
     <Compile Include="Models\MDifinidoresDeCategoria.cs" />
     <Compile Include="Models\MIdiomas.cs" />
     <Compile Include="Models\MPalabras.cs" />
     <Compile Include="Models\MWebSites.cs" />
-    <Compile Include="Views\About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -310,13 +302,6 @@
     </Compile>
     <Compile Include="Views\AnalizarRed.aspx.designer.cs">
       <DependentUpon>AnalizarRed.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\AnalizarWS.aspx.cs">
       <DependentUpon>AnalizarWS.aspx</DependentUpon>

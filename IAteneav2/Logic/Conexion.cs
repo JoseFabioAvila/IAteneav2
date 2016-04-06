@@ -7,7 +7,7 @@ namespace IAteneav2.Logic
     {
         private SqlConnection conexionc = new SqlConnection();
         //private String cadenaConexion = @"Data Source=.\SQLEXPRESS;Initial Catalog=BD_ATENA;Integrated Security=True";
-        private String cadenaConexion = @"Data Source=DESKTOP-O5SA35M;Initial Catalog=BD_Conocimiento;Integrated Security=True";
+        private String cadenaConexion = @"Data Source=.\SQLEXPRESS;Initial Catalog=BD_ATENA;Integrated Security=True";
         private String mostrarError = "";
 
 

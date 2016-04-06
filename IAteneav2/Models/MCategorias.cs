@@ -116,5 +116,41 @@ namespace IAteneav2.Models
 
             return result;
         }
+
+        public Categoria[] Selectall()
+        {
+            Categoria[] lstCat = null;
+            try
+            {
+                if (conexion.conectarServer())
+                {
+                    string sql = @"SELECT* FROM Categoria;";
+                    using (var command = new SqlCommand(sql, conexion.Conexionc))
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            var list = new List<Categoria>();
+                            while (reader.Read())
+                            {
+                                Categoria i = new Categoria();
+                                i.setID(reader.GetByte(0));
+                                i.setNom(reader.GetString(1));
+                                list.Add(i);
+                            }
+                            lstCat = list.ToArray();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                String MostrarError = "Mensaje de la excepcio: " + ex.Message.ToString();
+            }
+            finally
+            {
+                conexion.desconectar();
+            }
+            return lstCat;
+        }
     }
 }

@@ -13,6 +13,8 @@
                     <asp:FileUpload id="FileUploadControl" runat="server"  CssClass="well"/>
                     <br />
                     <asp:Button ID="Button1" OnClick="analizarEnDisco" runat="server" Text="Analizar Carpeta o Archivo" CssClass="btn btn-lg btn-success"/>
+                    <br />
+                    <asp:Button ID="Button2" OnClick="guardar" runat="server" Text="Guardar Palabras" CssClass="btn btn-lg btn-success"/>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
