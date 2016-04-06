@@ -14,7 +14,8 @@ namespace IAteneav2.Views
     {
 
         Logic.AnalzarDisco inst = new Logic.AnalzarDisco();
-        LinkedList<string> list;
+        LinkedList<string> directorios = new LinkedList<string>();
+        LinkedList<string> palabras = new LinkedList<string>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,7 +35,7 @@ namespace IAteneav2.Views
 
         private void imprimirLista()
         {
-            LinkedList<string> palabras = inst.palabrasDirectorios;
+            palabras = inst.palabrasDirectorios;
             TextBox1.Text += "\n\n\n\n\n";
             foreach (string palabra in palabras)
             {
@@ -45,39 +46,10 @@ namespace IAteneav2.Views
         protected void analizarEnDisco(object sender, EventArgs e)
         {
             string path = TextBox2.Text;
-            list = inst.genListFromDirectory(path);
-            imprimir(list);
+            directorios = inst.genListFromDirectory(path);
+            imprimir(directorios);
             imprimirLista();
         }
 
     }
 }
-
-
-//if (FileUploadControl.HasFile)
-//{
-//    FileInfo Finfo = new FileInfo(FileUploadControl.PostedFile.FileName);
-//    try
-//    {
-//        if (Finfo.Extension.ToLower() == ".docx" || Finfo.Extension.ToLower() == ".doc")
-//        {
-//            if (FileUploadControl.PostedFile.ContentLength < 102400)
-//            {
-
-//                string filename = Path.GetFileName(FileUploadControl.FileName);
-//                FileUploadControl.SaveAs(Server.MapPath("~/docs/") + filename);
-//                TextBox1.Text += "Upload status: File uploaded!\n\n";
-//                TextBox1.Text += inst.OpenWordprocessingDocumentReadonly(Server.MapPath("~/docs/") + filename);
-//            }
-//            else
-//                TextBox1.Text += "\n\nUpload status: The file has to be less than 100 kb!\n";
-//        }
-//        else
-//            TextBox1.Text += "Upload status: Only JPEG files are accepted!\n";
-//    }
-//    catch (Exception ex)
-//    {
-//        TextBox1.Text += "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
-//    }
-//}
-//TextBox1.Text = ""; //borrar luego

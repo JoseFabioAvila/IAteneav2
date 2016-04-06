@@ -15,6 +15,8 @@ namespace IAteneav2.Logic
     public class AnalizarComprimidos
     {
 
+        
+
 
         /// <summary>
         /// Crea el directorio docs si no existe, si existe no hace nada
@@ -35,7 +37,7 @@ namespace IAteneav2.Logic
         }
 
 
-        public string openExistingZipFile(string archivo)
+        public LinkedList<string> openExistingZipFile(string archivo)
         {
             try {
                 BZip2InputStream x;
@@ -44,11 +46,38 @@ namespace IAteneav2.Logic
                 {
                     zip.ExtractAll(extractPath, ExtractExistingFileAction.DoNotOverwrite);
                 }
-                return "exito";
+                LinkedList<string> lista = genListFromDirectory(@"C:\comprimidos");
+
+                descomprimirListaBzip2(lista);
+
+                LinkedList<string> jsons = genListJson(@"C:\comprimidos");
+                string res = "";
+
+                foreach(string json in jsons) {
+                    res += leerJson(json);
+                }
+                lista.Clear();
+                string[] words = res.Split(new char[] { '¿', '¡', ' ', '.', '%', '*', '+', ':', '_', '–', '-', '~', '¿', '?', '|', '!', '<', '>', '/', '\'', '=', '{', '}', '[', ']', ';', ',', '"', '(', ')', '$', '^', '@', '#', '&', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\n'}, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string word in words)
+                {
+                    lista.AddLast(word);
+                }
+
+                return lista;
             }
             catch (FileNotFoundException e)
             {
-                return "error";
+                return null;
+            }
+        }
+
+        public void descomprimirListaBzip2(LinkedList<string> lista)
+        {
+            if(lista != null) {
+                foreach (string archivo in lista)
+                {
+                    descomprimirBzip2(archivo, Path.GetDirectoryName(archivo));
+                }
             }
         }
 
@@ -73,7 +102,12 @@ namespace IAteneav2.Logic
         }
 
 
-        public string blabla(string dir)
+        /// <summary>
+        /// lee los json de un archivo json
+        /// </summary>
+        /// <param name="dir">direccion del archivo json</param>
+        /// <returns>los textos de los twits</returns>
+        public string leerJson(string dir)
         {
             //JObject o1 = JObject.Parse(File.ReadAllText(dir));
 
@@ -98,8 +132,80 @@ namespace IAteneav2.Logic
                 //return o1.ToString();
                 return x;
             }
+        }
 
-            
+
+        /// <summary>
+        /// genera la lista de rutas en donde hay archivos bz2
+        /// </summary>
+        /// <param name="DirPath">direccion del archivo descomprimido</param>
+        /// <returns>lista de rutas de bz2</returns>
+        public LinkedList<string> genListFromDirectory(string DirPath)
+        {
+
+            LinkedList<string> direcciones = new LinkedList<string>();
+
+            string x = "inicio \n";
+            try
+            {
+                DirectoryInfo Dir = new DirectoryInfo(DirPath);
+                DirectoryInfo[] DirList = Dir.GetDirectories();
+                FileInfo[] FileList = Dir.GetFiles("*.*", SearchOption.AllDirectories);
+
+                foreach (DirectoryInfo FI in DirList)
+                {
+                    x += FI.FullName + "\n";
+                }
+                x += "\n\n\n";
+
+                foreach (FileInfo FI in FileList)
+                {
+                    x += FI.FullName + "\n";
+                    direcciones.AddLast(FI.FullName);
+                }
+
+                return direcciones;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+        public LinkedList<string> genListJson(string DirPath)
+        {
+
+            LinkedList<string> direcciones = new LinkedList<string>();
+
+            string x = "inicio \n";
+            try
+            {
+                DirectoryInfo Dir = new DirectoryInfo(DirPath);
+                DirectoryInfo[] DirList = Dir.GetDirectories();
+                FileInfo[] FileList = Dir.GetFiles("*.*", SearchOption.AllDirectories);
+
+                foreach (DirectoryInfo FI in DirList)
+                {
+                    x += FI.FullName + "\n";
+                }
+                x += "\n\n\n";
+
+                foreach (FileInfo FI in FileList)
+                {
+                    x += FI.FullName + "\n";
+                    if (FI.Extension.Equals(".json"))
+                    {
+                        direcciones.AddLast(FI.FullName);
+                    }
+                }
+
+                return direcciones;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }

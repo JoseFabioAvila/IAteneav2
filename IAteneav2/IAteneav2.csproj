@@ -205,12 +205,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\About.aspx" />
     <Content Include="Views\AnalizarFacebook.aspx" />
     <Content Include="Views\AnalizarMM.aspx" />
     <Content Include="Views\AnalizarRed.aspx" />
     <Content Include="Views\AnalizarTexto.aspx" />
-    <Content Include="Views\Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -302,13 +300,6 @@
     <Compile Include="Models\MIdiomas.cs" />
     <Compile Include="Models\MPalabras.cs" />
     <Compile Include="Models\MWebSites.cs" />
-    <Compile Include="Views\About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -339,13 +330,6 @@
     </Compile>
     <Compile Include="Views\AnalizarTexto.aspx.designer.cs">
       <DependentUpon>AnalizarTexto.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\AnalizarWS.aspx.cs">
       <DependentUpon>AnalizarWS.aspx</DependentUpon>

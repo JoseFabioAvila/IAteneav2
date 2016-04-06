@@ -11,6 +11,9 @@ namespace IAteneav2.Views
 {
     public partial class AnalizarMM : System.Web.UI.Page
     {
+
+
+        LinkedList<string> lista = new LinkedList<string>();
         Logic.AnalizarComprimidos ins = new Logic.AnalizarComprimidos();
 
 
@@ -25,14 +28,16 @@ namespace IAteneav2.Views
             //D:\OneDrive\twitter-stream-2011-09-27.zip
 
             //descomprime archivos zip
-            TextBox1.Text = ins.openExistingZipFile(TextBox2.Text);
+            lista = ins.openExistingZipFile(TextBox2.Text);
+            imprimir();
 
-            //descomprime archivos bz2
-            ins.descomprimirBzip2(@"C:\comprimidos\27\19\48.json.bz2", @"C:\comprimidos\27\19\");
+        }
 
-            //lee el contenido de un json
-            //TextBox1.Text = ins.blabla(TextBox2.Text);
-
+        private void imprimir()
+        {
+            foreach (string palabra in lista) {
+                TextBox1.Text += palabra+"\n";
+            }
         }
 
     }
