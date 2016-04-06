@@ -11,10 +11,11 @@
             <asp:TableRow>
                 <asp:TableCell>
                     <asp:FileUpload id="FileUploadControl" runat="server"  CssClass="well"/>
-                    <br />
-                    <asp:Button ID="Button1" OnClick="analizarEnDisco" runat="server" Text="Analizar Carpeta o Archivo" CssClass="btn btn-lg btn-success"/>
-                    <br />
+                    <asp:Button ID="Button3" OnClick="analizarEnDisco2" runat="server" Text="entrenar" CssClass="btn btn-lg btn-success"/>
                     <asp:Button ID="Button2" OnClick="guardar" runat="server" Text="Guardar Palabras" CssClass="btn btn-lg btn-success"/>
+                    <br />
+                    <asp:TextBox ID="TextBox2" runat="server" Width="1000"></asp:TextBox>
+                    <asp:Button ID="Button1" OnClick="analizarEnDisco" runat="server" Text="Analizar Carpeta o Archivo" CssClass="btn btn-lg btn-success"/>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>

@@ -47,8 +47,16 @@
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.4.369, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\ICSharpCode.SharpZipLib.dll.0.85.4.369\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ionic.Zip, Version=1.9.8.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
@@ -195,6 +203,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\AnalizarFacebook.aspx" />
     <Content Include="Views\AnalizarMM.aspx" />
     <Content Include="Views\AnalizarRed.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -239,6 +248,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\AnalizarTexto.aspx" />
     <Content Include="Views\AnalizarWS.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -266,6 +276,8 @@
     <Compile Include="Clases\DifinidorDeCategoria.cs" />
     <Compile Include="Clases\DifinidorDeIdioma.cs" />
     <Compile Include="Clases\Idioma.cs" />
+    <Compile Include="Logic\AnalzarTextos.cs" />
+    <Compile Include="Logic\FacebookPosts.cs" />
     <Compile Include="Logic\NaiveBayes.cs" />
     <Compile Include="Clases\Palabra.cs" />
     <Compile Include="Clases\WebSite.cs" />
@@ -289,6 +301,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Views\AnalizarFacebook.aspx.cs">
+      <DependentUpon>AnalizarFacebook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AnalizarFacebook.aspx.designer.cs">
+      <DependentUpon>AnalizarFacebook.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\AnalizarMM.aspx.cs">
       <DependentUpon>AnalizarMM.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -302,6 +321,13 @@
     </Compile>
     <Compile Include="Views\AnalizarRed.aspx.designer.cs">
       <DependentUpon>AnalizarRed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AnalizarTexto.aspx.cs">
+      <DependentUpon>AnalizarTexto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AnalizarTexto.aspx.designer.cs">
+      <DependentUpon>AnalizarTexto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\AnalizarWS.aspx.cs">
       <DependentUpon>AnalizarWS.aspx</DependentUpon>
