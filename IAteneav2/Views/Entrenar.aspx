@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AnalizarLocal.aspx.cs" Inherits="IAteneav2.Views.Results" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Entrenar.aspx.cs" Inherits="IAteneav2.Views.Entrenar" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <br />
@@ -12,8 +12,9 @@
             </asp:TableHeaderRow>
             <asp:TableRow>
                 <asp:TableCell>
-                    <asp:TextBox ID="TextBox2" runat="server" Width="1000"></asp:TextBox>
-                    <asp:Button ID="Button1" OnClick="analizarEnDisco" runat="server" Text="Analizar Carpeta o Archivo" CssClass="btn btn-lg btn-success"/>
+                    <asp:FileUpload id="FileUploadControl" runat="server"  CssClass="well"/>
+                    <asp:Button ID="Button3" OnClick="analizarEnDisco2" runat="server" Text="Entrenar" CssClass="btn btn-lg btn-success"/>
+                    <asp:Button ID="Button2" OnClick="guardar" runat="server" Text="Guardar" CssClass="btn btn-lg btn-success"/>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
@@ -35,4 +36,5 @@
             </asp:TableRow>
         </asp:Table>
     </div>
+
 </asp:Content>

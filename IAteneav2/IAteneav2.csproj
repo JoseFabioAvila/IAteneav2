@@ -259,6 +259,7 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\AnalizarLocal.aspx" />
+    <Content Include="Views\Entrenar.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="packages.config" />
@@ -373,6 +374,13 @@
     </Compile>
     <Compile Include="Views\AnalizarLocal.aspx.designer.cs">
       <DependentUpon>AnalizarLocal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Entrenar.aspx.cs">
+      <DependentUpon>Entrenar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Entrenar.aspx.designer.cs">
+      <DependentUpon>Entrenar.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
