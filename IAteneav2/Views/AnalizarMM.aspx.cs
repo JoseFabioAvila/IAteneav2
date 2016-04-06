@@ -31,9 +31,11 @@ namespace IAteneav2.Views
 
         private void imprimir()
         {
-            foreach (string palabra in lista)
-            {
-                TextBox1.Text += palabra + "\n";
+            if(lista != null) {
+                foreach (string palabra in lista)
+                {
+                    TextBox1.Text += palabra + "\n";
+                }
             }
         }
     }

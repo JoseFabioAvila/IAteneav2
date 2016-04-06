@@ -2,6 +2,8 @@
 using ICSharpCode.SharpZipLib.Core;
 using Ionic.Zip;
 using Newtonsoft.Json;
+using SharpCompress.Common;
+using SharpCompress.Reader;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +13,11 @@ using System.Web;
 
 namespace IAteneav2.Logic
 {
+    /// <summary>
+    /// instalar con la consola del package manager asi : Install-Package sharpcompress
+    /// </summary>
+
+
     public class AnalizarComprimidos
     {
         /// <summary>
@@ -42,30 +49,49 @@ namespace IAteneav2.Logic
                 {
                     zip.ExtractAll(extractPath, ExtractExistingFileAction.DoNotOverwrite);
                 }
-                LinkedList<string> lista = genListFromDirectory(@"C:\comprimidos");
-
-                descomprimirListaBzip2(lista);
-
-                LinkedList<string> jsons = genListJson(@"C:\comprimidos");
-                string res = "";
-
-                foreach (string json in jsons)
-                {
-                    res += leerJson(json);
-                }
-                lista.Clear();
-                string[] words = res.Split(new char[] { '¿', '¡', ' ', '.', '%', '*', '+', ':', '_', '–', '-', '~', '¿', '?', '|', '!', '<', '>', '/', '\'', '=', '{', '}', '[', ']', ';', ',', '"', '(', ')', '$', '^', '@', '#', '&', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (string word in words)
-                {
-                    lista.AddLast(word);
-                }
-
-                return lista;
             }
-            catch (FileNotFoundException e)
+            catch 
             {
-                return null;
+                try
+                {
+                    using (Stream stream = File.OpenRead(archivo))
+                    {
+                        var reader = ReaderFactory.Open(stream);
+                        while (reader.MoveToNextEntry())
+                        {
+                            if (!reader.Entry.IsDirectory)
+                            {
+                                reader.WriteEntryToDirectory(@"C:\comprimidos", ExtractOptions.ExtractFullPath);
+                            }
+                        }
+
+                    }
+                    
+                }
+                catch
+                {
+                    return null;
+                }
             }
+            LinkedList<string> lista = genListFromDirectory(@"C:\comprimidos");
+
+            descomprimirListaBzip2(lista);
+
+            LinkedList<string> jsons = genListJson(@"C:\comprimidos");
+            string res = "";
+
+            foreach (string json in jsons)
+            {
+                res += leerJson(json);
+            }
+            lista.Clear();
+            string[] words = res.Split(new char[] { '¿', '¡', ' ', '.', '%', '*', '+', ':', '_', '–', '-', '~', '¿', '?', '|', '!', '<', '>', '/', '\'', '=', '{', '}', '[', ']', ';', ',', '"', '(', ')', '$', '^', '@', '#', '&', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string word in words)
+            {
+                lista.AddLast(word);
+            }
+
+            return lista;
         }
 
         public void descomprimirListaBzip2(LinkedList<string> lista)
