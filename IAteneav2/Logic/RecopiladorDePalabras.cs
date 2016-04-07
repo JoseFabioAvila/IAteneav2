@@ -19,11 +19,11 @@ namespace IAteneav2.Logic
         public int[] legCount { get; set; }
 
         /// <summary>
-        /// 
+        /// Constructor del recopilador de palabras con categoria
         /// </summary>
-        /// <param name="lst"></param>
-        /// <param name="i"></param>
-        /// <param name="c"></param>
+        /// <param name="lst">lista de palabra a guardar</param>
+        /// <param name="i">idioma</param>
+        /// <param name="c">categoria</param>
         public RecopiladorDePalabras(List<String> lst, int i, int c)
         {
             int[] x = { 0, 0, 0, 0 };
@@ -34,6 +34,11 @@ namespace IAteneav2.Logic
             guardar(lst, i, c);
         }
 
+        /// <summary>
+        /// Constructor del recopiladro de palabras sin categoria
+        /// </summary>
+        /// <param name="lst">lista de palabras</param>
+        /// <param name="i">idioma</param>
         public RecopiladorDePalabras(List<String> lst, int i)
         {
             int[] x = { 0, 0, 0, 0 };
@@ -44,6 +49,10 @@ namespace IAteneav2.Logic
             guardar(lst, i);
         }
 
+        /// <summary>
+        /// Recopilador para carga de datos directamente a la base de datos
+        /// </summary>
+        /// <param name="text"></param>
         public RecopiladorDePalabras(String text)
         {
             spltTxt = text.Split(new Char[] { ' ', '.', '%', '*', '+', ':', '_', '|', '!', '<', '>', '/', '=', '{', '}', '[', ']', ';', ',', '"', '(', ')', '#', '&' },
@@ -54,9 +63,9 @@ namespace IAteneav2.Logic
             catCount = x;
             legCount = y;
 
-            switch (spltTxt[0])
+            switch (spltTxt[0]) // Codigos para la identificacion de casos
             {
-                case "Ingles":
+                case "Ingles": // Codigo
                     guardar(spltTxt, Ingles);
                     break;
                 case "Español":
@@ -122,7 +131,11 @@ namespace IAteneav2.Logic
                     break;
             }
         }
-
+        /// <summary>
+        /// Guardar una lista de palabras sin categoria
+        /// </summary>
+        /// <param name="lstTxt">lista de palabras</param>
+        /// <param name="idioma">idioma</param>
         public void guardar(String[] lstTxt, int idioma)
         {
            Controllers.CPalabras cntll = new Controllers.CPalabras();
@@ -138,7 +151,11 @@ namespace IAteneav2.Logic
             }
             
         }
-
+        /// <summary>
+        /// Guardar una lista de palabras sin categoria
+        /// </summary>
+        /// <param name="lstTxt">lista de palabras</param>
+        /// <param name="idioma">idioma</param>
         public void guardar(List<string> lstTxt, int idioma)
         {
             Controllers.CPalabras cntll = new Controllers.CPalabras();
@@ -155,7 +172,12 @@ namespace IAteneav2.Logic
             }
 
         }
-
+        /// <summary>
+        /// Guardar una lista de palabras con categoria
+        /// </summary>
+        /// <param name="lstTxt">lista de palabras</param>
+        /// <param name="idioma">idioma</param>
+        /// <param name="categoria">categoria</param>
         public void guardar(String[] lstTxt, int idioma, int categoria)
         {
             Models.MPalabras mp = new Models.MPalabras();
@@ -179,6 +201,12 @@ namespace IAteneav2.Logic
             }
 
         }
+        /// <summary>
+        /// Guardar una lista de palabras con categoria
+        /// </summary>
+        /// <param name="lstTxt">lista de palabras</param>
+        /// <param name="idioma">idioma</param>
+        /// <param name="categoria">categoria</param>
         public void guardar(List<string> lstTxt, int idioma, int categoria)
         {
             Models.MPalabras mp = new Models.MPalabras();

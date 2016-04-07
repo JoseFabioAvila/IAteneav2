@@ -7,15 +7,26 @@ namespace IAteneav2.Logic
 {
     public class Aprendizaje
     {
+        /// <summary>
+        /// Variable a escribir en el textbox
+        /// </summary>
         public string Print { get; set; }
+        /// <summary>
+        /// Clasificador Bayesiano y sus resultados
+        /// </summary>
         public Logic.NaiveBayes NaiveBayes { get; set; }
-
+        /// <summary>
+        /// Constructos de aprendizaje
+        /// </summary>
+        /// <param name="nby">Clasificador con resultados</param>
         public Aprendizaje(Logic.NaiveBayes nby)
         {
             NaiveBayes = nby;
             Precesar();
         }
-
+        /// <summary>
+        /// Muestra de informacion de los resultados del clasificador
+        /// </summary>
         private void Precesar()
         {
             Print += "\n-------> DataBase information: \n";
@@ -57,7 +68,9 @@ namespace IAteneav2.Logic
 
             ValidacionIdioma();
         }
-
+        /// <summary>
+        /// Validaciones de idioma requeridas para guardar la palabras
+        /// </summary>
         private void ValidacionIdioma()
         {
             Print += "\n\n";
@@ -82,7 +95,10 @@ namespace IAteneav2.Logic
                 Print += "\n Lectura no satisface los requisitos minimos para aprendizaje";
             }
         }
-
+        /// <summary>
+        /// Validaciones de categoria requeridas para guardar la palabras
+        /// </summary>
+        /// <param name="idioma">idioma validado</param>
         private void ValidacionCategoria(int idioma)
         {
             long sumaCategorias = NaiveBayes.Res.tplDep + NaiveBayes.Res.tplSld + NaiveBayes.Res.tplTec + NaiveBayes.Res.tplEcn;
@@ -108,7 +124,11 @@ namespace IAteneav2.Logic
                 ValidacionConocido(idioma);
             }
         }
-
+        /// <summary>
+        /// Validaciones de minimo de palabras reconocidas de la base de datos requeridas para guardar la palabras
+        /// </summary>
+        /// <param name="idioma">idioma validado</param>
+        /// <param name="categoria">categoria validada</param>
         private void ValidacionConocido(int idioma, int categoria)
         {
             if(((float)NaiveBayes.Res.knownWrd / (float)NaiveBayes.Res.totalWrds * (float)100) > (float) 80)
@@ -122,7 +142,10 @@ namespace IAteneav2.Logic
                 Print += "\n Lectura no satisface los requisitos minimos para aprendizaje";
             }
         }
-
+        /// <summary>
+        /// Validaciones de minimo de palabras reconocidas de la base de datos requeridas para guardar la palabras
+        /// </summary>
+        /// <param name="idioma">idioma validado</param>
         private void ValidacionConocido(int idioma)
         {
             if (((float)NaiveBayes.Res.knownWrd / (float)NaiveBayes.Res.totalWrds * (float)100) > (float)80)
