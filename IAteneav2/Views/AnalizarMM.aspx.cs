@@ -7,9 +7,15 @@ using System.Web.UI.WebControls;
 
 namespace IAteneav2.Views
 {
+    /// <summary>
+    /// vista de analizar archivos de mensajes masivos
+    /// </summary>
     public partial class AnalizarMM : System.Web.UI.Page
     {
+        //lista de palabras
         LinkedList<string> lista = new LinkedList<string>();
+
+        //instancia de AnalizarComprimidos
         Logic.AnalizarComprimidos ins = new Logic.AnalizarComprimidos();
 
 
@@ -19,6 +25,11 @@ namespace IAteneav2.Views
             ins.checkDirectory(@"C:\comprimidos");
         }
 
+        /// <summary>
+        /// accion del boton analizar archivos de mensajes masivos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void analizarArchivosMM(object sender, EventArgs e)
         {
             //D:\OneDrive\twitter-stream-2011-09-27.zip

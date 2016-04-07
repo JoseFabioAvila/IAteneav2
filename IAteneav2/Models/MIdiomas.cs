@@ -8,10 +8,18 @@ using System.Data;
 
 namespace IAteneav2.Models
 {
+    /// <summary>
+    /// Modelo de idiomas
+    /// </summary>
     public class MIdiomas
     {
+        //instancia de conexion
         Logic.Conexion conexion = new Logic.Conexion();
 
+        /// <summary>
+        /// toma la lista de idiomas
+        /// </summary>
+        /// <returns>lista de idiomas</returns>
         public LinkedList<Clases.Idioma> getIdiomas()
         {
             bool isConected = conexion.conectarServer();
@@ -47,7 +55,12 @@ namespace IAteneav2.Models
             }
             return lista;
         }
-
+        
+        /// <summary>
+        /// agrega idomas 
+        /// </summary>
+        /// <param name="idioma">idioma</param>
+        /// <returns></returns>
         public bool agregarIdioma(string idioma)
         {
             bool isConected = conexion.conectarServer();
@@ -80,7 +93,13 @@ namespace IAteneav2.Models
             return respuesta;
         }
 
-        // Seleccionar idioma
+
+
+        /// <summary>
+        /// select de idioma por id
+        /// </summary>
+        /// <param name="id">id de idioma</param>
+        /// <returns>Idioma</returns>
         public Idioma Select(int id)
         {
             Idioma result = null;
@@ -116,6 +135,11 @@ namespace IAteneav2.Models
             return result;
         }
 
+
+        /// <summary>
+        /// select todos los idiomas
+        /// </summary>
+        /// <returns>lista de idiomas</returns>
         public Idioma[] Selectall()
         {
             Idioma[] lstIdioma = null;

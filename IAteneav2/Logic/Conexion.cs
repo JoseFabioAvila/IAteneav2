@@ -3,11 +3,15 @@ using System.Data.SqlClient;
 
 namespace IAteneav2.Logic
 {
-    internal class Conexion
+    /// <summary>
+    /// Clase que se encarga de crear, abrir y cerrar la conexion con la base de datos
+    /// </summary>
+    public class Conexion
     {
+
         private SqlConnection conexionc = new SqlConnection();
         //private String cadenaConexion = @"Data Source=.\SQLEXPRESS;Initial Catalog=BD_ATENA;Integrated Security=True";
-        private String cadenaConexion = @"Data Source=.\SQLEXPRESS;Initial Catalog=BD_ATENA;Integrated Security=True";
+        private String cadenaConexion = @"Data Source=DESKTOP-DBO8CJO;Initial Catalog=BD_Conocimiento;Integrated Security=True";
         private String mostrarError = "";
 
 
@@ -20,6 +24,9 @@ namespace IAteneav2.Logic
             set { mostrarError = value; }
         }
 
+        /// <summary>
+        /// get y set de la variable conecion
+        /// </summary>
         public SqlConnection Conexionc
         {
             get

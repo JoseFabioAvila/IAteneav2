@@ -8,10 +8,18 @@ using System.Data;
 
 namespace IAteneav2.Models
 {
+    /// <summary>
+    /// Modelo de categorias
+    /// </summary>
     public class MCategorias
     {
+        //instancia de conexion
         Logic.Conexion conexion = new Logic.Conexion();
 
+        /// <summary>
+        /// toma la lista de categorias
+        /// </summary>
+        /// <returns>lista de categorias</returns>
         public LinkedList<Clases.Categoria> getCategorias()
         {
             bool isConected = conexion.conectarServer();
@@ -48,6 +56,11 @@ namespace IAteneav2.Models
             return lista;
         }
 
+        /// <summary>
+        /// agrega categorias a la tabla de categorias
+        /// </summary>
+        /// <param name="categoria"></param>
+        /// <returns>booleano que significa exito o fracazo</returns>
         public bool agregarCategoria(string categoria)
         {
             bool isConected = conexion.conectarServer();
@@ -80,7 +93,11 @@ namespace IAteneav2.Models
             return respuesta;
         }
 
-        // Seleccionar idioma
+        /// <summary>
+        /// select de idioma por id
+        /// </summary>
+        /// <param name="id">id de categoria</param>
+        /// <returns>la categoria</returns>
         public Categoria Select(int id)
         {
             Categoria result = null;
@@ -117,6 +134,10 @@ namespace IAteneav2.Models
             return result;
         }
 
+        /// <summary>
+        /// select all de categoria
+        /// </summary>
+        /// <returns>todas las categorias</returns>
         public Categoria[] Selectall()
         {
             Categoria[] lstCat = null;

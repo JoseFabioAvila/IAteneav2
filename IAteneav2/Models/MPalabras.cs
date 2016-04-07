@@ -8,10 +8,18 @@ using System.Data;
 
 namespace IAteneav2.Models
 {
+    /// <summary>
+    /// Modelo de palabras
+    /// </summary>
     public class MPalabras
     {
+        //instancia de conexion
         Logic.Conexion conexion = new Logic.Conexion();
 
+        // <summary>
+        /// toma la lista de palabras
+        /// </summary>
+        /// <returns>lista de palabras</returns>
         public LinkedList<Clases.Palabra> getPalabras()
         {
             bool isConected = conexion.conectarServer();
@@ -48,7 +56,10 @@ namespace IAteneav2.Models
             return lista;
         }
 
-        // Seleccionar todas las pabras
+        /// <summary>
+        /// select all de palabras
+        /// </summary>
+        /// <returns>todas las palabras</returns>
         public Palabra[] Selectall()
         {
             Palabra[] lstPalabras = null;
@@ -96,6 +107,11 @@ namespace IAteneav2.Models
             return lstPalabras;
         }
 
+        /// <summary>
+        /// select de idioma por nombre
+        /// </summary>
+        /// <param name="nom">nombre de la palabra</param>
+        /// <returns>la palabra</returns>
         public Palabra[] Select(String nom)
         {
             Palabra[] lstPalabras = null;
@@ -147,6 +163,12 @@ namespace IAteneav2.Models
             return lstPalabras; 
         }
 
+        /// <summary>
+        /// verifica que exita la palabra en un idioma
+        /// </summary>
+        /// <param name="nom">palbra</param>
+        /// <param name="idioma">id idioma</param>
+        /// <returns>booleano que denota que existe o no</returns>
         public bool exist(String nom, int idioma)
         {
             bool res = false;
@@ -185,6 +207,12 @@ namespace IAteneav2.Models
             return res;
         }
 
+        /// <summary>
+        /// agrega palabras a la tabla de palabras
+        /// </summary>
+        /// <param name="palabra">palabra a gregar</param>
+        /// <param name="i">idoma</param>
+        /// <returns>booleano que denota exito</returns>
         public bool agregarPalabra(string palabra, Idioma i)
         {
             int idioma = i.ID;
@@ -219,6 +247,13 @@ namespace IAteneav2.Models
             return respuesta;
         }
 
+        /// <summary>
+        /// agrega palabras a la tabla de palabras
+        /// </summary>
+        /// <param name="palabra">plabra a agregar</param>
+        /// <param name="idioma">idioma</param>
+        /// <param name="categoria">categoria</param>
+        /// <returns>booleano que denoa exito o error</returns>
         public bool agregarPalabra(string palabra, int idioma, int categoria)
         {
             bool isConected = conexion.conectarServer();
@@ -253,7 +288,12 @@ namespace IAteneav2.Models
             return respuesta;
         }
 
-
+        /// <summary>
+        /// edita la categoria de una palabra por id
+        /// </summary>
+        /// <param name="id">id de palabra</param>
+        /// <param name="cat">id categoria</param>
+        /// <returns>booleano que denota exito o error</returns>
         public bool EditarCategoria(long id, int cat)
         {
             bool respuesta = false;

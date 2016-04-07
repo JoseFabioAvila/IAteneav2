@@ -8,6 +8,9 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace IAteneav2.Logic
 {
+    /// <summary>
+    /// Clase que contiene todos lo necesario para crear la lista de palabras de las rutas de carpetas o archivos
+    /// </summary>
     public class AnalzarDisco
     {
         public LinkedList<string> palabrasDirectorios = new LinkedList<string>();
@@ -30,10 +33,6 @@ namespace IAteneav2.Logic
 
         }
 
-        internal void uploadFiles(string v, object fileUploadControl)
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// Abre un archivo .docx o .doc y obtiene su contenido.
@@ -60,13 +59,18 @@ namespace IAteneav2.Logic
         /// <param name="texto">es el texto tomado de un archivo</param>
         private void enlistar(string texto)
         {
-            string[] palabras = texto.Split(new char[] { ' ', '.', '%', '*', '+', ':', '_', '–', '-', '~', '¿', '?', '|', '!', '<', '>', '/', '\'', '=', '{', '}', '[', ']', ';', ',', '"', '(', ')', '$', '^', '@', '#', '&', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] palabras = texto.Split(new char[] { '¿', '¡', ' ', '.', '%', '*', '+', ':', '_', '–', '-', '~', '¿', '?', '|', '!', '<', '>', '/', '\'', '=', '{', '}', '[', ']', ';', ',', '"', '(', ')', '$', '^', '@', '#', '&', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\n' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string palabra in palabras)
             {
                 palabrasDirectorios.AddLast(palabra);
             }
         }
 
+        /// <summary>
+        /// lee el archivo segun su tipo, ya sea txt, docx o doc
+        /// </summary>
+        /// <param name="archivo">ruta del archivo a leer</param>
+        /// <returns>texto contenido en el archivo</returns>
         public string leerArchivo(string archivo)
         {
             string res = "";
@@ -105,19 +109,11 @@ namespace IAteneav2.Logic
             return res;
         }
 
-        public string prueba()
-        {
-            string x = "";
-            //string startPath = @"c:\example\start";
-            //string zipPath = @"c:\example\result.zip";
-            //string extractPath = @"c:\example\extract";
-
-            //ZipFile.CreateFromDirectory(startPath, zipPath);
-
-            //ZipFile.ExtractToDirectory(zipPath, extractPath);
-            return x;
-        }
-
+        /// <summary>
+        /// Toma todo todas las rutas de archivos de una ruta
+        /// </summary>
+        /// <param name="DirPath">ruta de carpeta a analizar</param>
+        /// <returns>todas las rutas de archivos de la ruta</returns>
         public string GetFilesFromDirectory(string DirPath)
         {
             string x = "inicio \n";

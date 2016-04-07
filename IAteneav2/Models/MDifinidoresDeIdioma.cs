@@ -8,10 +8,18 @@ using System.Data;
 
 namespace IAteneav2.Models
 {
+    /// <summary>
+    /// Modelo de difinidores de idiomas
+    /// </summary>
     public class MDifinidoresDeIdioma
     {
+        //instancia de conexion
         Logic.Conexion conexion = new Logic.Conexion();
 
+        /// <summary>
+        /// toma la lista de difinidores de idomas
+        /// </summary>
+        /// <returns>lista de categorias</returns>
         public LinkedList<Clases.DifinidorDeIdioma> getDifinidoresDeIdioma()
         {
             bool isConected = conexion.conectarServer();

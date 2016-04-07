@@ -7,11 +7,15 @@ using System.Web.UI.WebControls;
 
 namespace IAteneav2
 {
+    /// <summary>
+    /// vista de analizador de websites
+    /// </summary>
     public partial class _Default : Page
     {
+        //lista de urls
         LinkedList<Clases.WebSite> urls = new LinkedList<Clases.WebSite>();
 
-
+        //instancia del controlador de websites
         Controllers.CWebSites insWebsites = new Controllers.CWebSites();
 
 
@@ -39,7 +43,8 @@ namespace IAteneav2
                 }
             }
             //Sirve para evitar que se caiga al xDDD
-            ListaWebsites.SelectedIndex = 2;
+            ListaWebsites.SelectedIndex = 0;
+
         }
 
         /// <summary>
@@ -96,26 +101,48 @@ namespace IAteneav2
         }
 
 
+        /// <summary>
+        /// analiza en un web site en especifico
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void analizarEnTodos(object sender, EventArgs e)
         {
             TextBox1.Text = ""; //borrar luego
-            // Is anything selected? The index is -1 if nothing is selected.
-            if (ListaWebsites.SelectedIndex > -1)
-            {
-                Logic.AnalizarWebsites inst = new Logic.AnalizarWebsites();
-                String text = inst.getHTMLFrom(ListaWebsites.SelectedItem.Text);
-                TextBox1.Text = text;
 
-            }
-            else
+            for (int i = 0; i < urls.Count; i++)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Debes seleccionar algun website para analizar')", true);
+                TextBox1.Text += "///////////////////////////////////////////////////////////\n\n\n";
+
+                Logic.AnalizarWebsites inst = new Logic.AnalizarWebsites();
+                LinkedList<String> lista = inst.genListaP(urls.ElementAt(i).Url.ToString());
+                string text = "";
+                foreach (string word in lista)
+                {
+                    text += word + "\n";
+                }
+                TextBox1.Text += text;
             }
         }
 
+        /// <summary>
+        /// analiza en todos los sitios web de la lista
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void analizarEnSite(object sender, EventArgs e)
         {
-            TextBox1.Text = ""; //borrar luego
+            //TextBox1.Text = ""; //borrar luego
+
+            //foreach (ListItem li in ListaWebsites.Items)
+            //{
+            //    if (li.Selected == true)
+            //    {
+            //        // Response.Write();
+            //        //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Error al agregar el website')", true);
+            //        TextBox1.Text = ListaWebsites.SelectedItem.Value;
+            //    }
+            //}
 
 
             // Is anything selected? The index is -1 if nothing is selected.
@@ -130,6 +157,7 @@ namespace IAteneav2
                     text += word + " "; // "\n\n";
                 }
                 TextBox1.Text = text;
+                Response.Write(text);
 
             }
             else

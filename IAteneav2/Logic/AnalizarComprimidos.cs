@@ -10,14 +10,12 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
-
+//instalar con la consola del package manager asi : Install-Package sharpcompress
 namespace IAteneav2.Logic
 {
     /// <summary>
-    /// instalar con la consola del package manager asi : Install-Package sharpcompress
+    /// Clase que contiene todos lo necesario para crear la lista de palabras de los archivos comprimidos de twiter
     /// </summary>
-
-
     public class AnalizarComprimidos
     {
         /// <summary>
@@ -38,7 +36,11 @@ namespace IAteneav2.Logic
 
         }
 
-
+        /// <summary>
+        /// Abre un archivo comprimido, lo descomprime y obtiene una lista de palabras
+        /// </summary>
+        /// <param name="archivo">ruta del archivo comprimido</param>
+        /// <returns>lista de palabras</returns>
         public LinkedList<string> openExistingZipFile(string archivo)
         {
             try
@@ -94,6 +96,10 @@ namespace IAteneav2.Logic
             return lista;
         }
 
+        /// <summary>
+        /// recorre la lista de rutas de archivos bz2 para luego descomprimir
+        /// </summary>
+        /// <param name="lista">lista de rutas en donde hay archivos bz2</param>
         public void descomprimirListaBzip2(LinkedList<string> lista)
         {
             if (lista != null)
@@ -196,7 +202,11 @@ namespace IAteneav2.Logic
             }
         }
 
-
+        /// <summary>
+        /// genera una lista de ubicaciones de archivos json
+        /// </summary>
+        /// <param name="DirPath">ruta en donde se encuentran los archivos json</param>
+        /// <returns></returns>
         public LinkedList<string> genListJson(string DirPath)
         {
 

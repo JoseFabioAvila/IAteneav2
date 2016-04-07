@@ -7,10 +7,15 @@ using System.Web.UI.WebControls;
 
 namespace IAteneav2.Views
 {
+    /// <summary>
+    /// vista de anlizar en texto
+    /// </summary>
     public partial class AnalizarTexto : System.Web.UI.Page
     {
+        //instancia de analizar textos
         Logic.AnalzarTextos ins = new Logic.AnalzarTextos();
 
+        //lista de palabras
         LinkedList<string> palabras = new LinkedList<string>();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -18,6 +23,11 @@ namespace IAteneav2.Views
 
         }
 
+        /// <summary>
+        /// accion del boton anlizar en texto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void AnalizarTxt_Click(object sender, EventArgs e)
         {
             palabras.Clear();
