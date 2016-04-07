@@ -5,6 +5,9 @@ using System.Web;
 
 namespace IAteneav2.Logic
 {
+    /// <summary>
+    /// Clase intermediaria para el amacen de palabra en la base de datos, sirve para el entrenamiento y para almacenamiento posterior
+    /// </summary>
     public class RecopiladorDePalabras
     {
         String[] spltTxt;
@@ -14,7 +17,33 @@ namespace IAteneav2.Logic
 
         public int[] catCount { get; set; }
         public int[] legCount { get; set; }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lst"></param>
+        /// <param name="i"></param>
+        /// <param name="c"></param>
+        public RecopiladorDePalabras(List<String> lst, int i, int c)
+        {
+            int[] x = { 0, 0, 0, 0 };
+            int[] y = { 0, 0, 0, 0 };
+            catCount = x;
+
+            legCount = y;
+            guardar(lst, i, c);
+        }
+
+        public RecopiladorDePalabras(List<String> lst, int i)
+        {
+            int[] x = { 0, 0, 0, 0 };
+            int[] y = { 0, 0, 0, 0 };
+            catCount = x;
+
+            legCount = y;
+            guardar(lst, i);
+        }
+
         public RecopiladorDePalabras(String text)
         {
             spltTxt = text.Split(new Char[] { ' ', '.', '%', '*', '+', ':', '_', '|', '!', '<', '>', '/', '=', '{', '}', '[', ']', ';', ',', '"', '(', ')', '#', '&' },
@@ -110,35 +139,68 @@ namespace IAteneav2.Logic
             
         }
 
+        public void guardar(List<string> lstTxt, int idioma)
+        {
+            Controllers.CPalabras cntll = new Controllers.CPalabras();
+            Clases.Palabra[] lstP = cntll.getPalabras();
+            Models.MPalabras mp = new Models.MPalabras();
+
+            foreach (String txt in lstTxt)
+            {
+                if (!mp.exist(txt, idioma))
+                {
+                    legCount[idioma]++;
+                    cntll.agregarPalabra(txt, idioma);
+                }
+            }
+
+        }
+
         public void guardar(String[] lstTxt, int idioma, int categoria)
         {
-            bool repetida = false;
             Models.MPalabras mp = new Models.MPalabras();
             Controllers.CPalabras cntll = new Controllers.CPalabras();
             Clases.Palabra[] lstP = cntll.getPalabras();
 
             foreach (String txt in lstTxt)
             {
-                repetida = false;
-                foreach (Clases.Palabra p in lstP)
-                {
-                    if (p.getPalabra().Equals(txt) && p.getIdioma().ID == idioma && p.Categoria == null)
-                    {
-                        mp.EditarCategoria(p.getId(), categoria);
-                        repetida = true;
-                        break;
-                    }
-                }
-
-                if (!repetida)
+                if (!mp.exist(txt, idioma))
                 {
                     catCount[categoria - 1]++;
                     legCount[idioma - 1]++;
                     mp.agregarPalabra(txt, idioma, categoria);
                 }
+                else
+                {
+                    catCount[categoria - 1]++;
+                    legCount[idioma - 1]++;
+                    mp.EditarCategoria(mp.Select(txt)[0].getId(), categoria);
+                }
             }
 
         }
+        public void guardar(List<string> lstTxt, int idioma, int categoria)
+        {
+            Models.MPalabras mp = new Models.MPalabras();
+            Controllers.CPalabras cntll = new Controllers.CPalabras();
+            Clases.Palabra[] lstP = cntll.getPalabras();
 
+            foreach (String txt in lstTxt)
+            {
+                if (!mp.exist(txt, idioma))
+                {
+                    catCount[categoria]++;
+                    legCount[idioma]++;
+                    mp.agregarPalabra(txt, idioma, categoria);
+                }
+                else
+                {
+                    catCount[categoria]++;
+                    legCount[idioma]++;
+                    mp.EditarCategoria(mp.Select(txt)[0].getId(), categoria);
+                }
+            }
+
+        }
     }
 }

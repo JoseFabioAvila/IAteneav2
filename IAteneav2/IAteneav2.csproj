@@ -282,6 +282,7 @@
     <Compile Include="Clases\DifinidorDeIdioma.cs" />
     <Compile Include="Clases\Idioma.cs" />
     <Compile Include="Logic\AnalzarTextos.cs" />
+    <Compile Include="Logic\Aprendizaje.cs" />
     <Compile Include="Logic\FacebookPosts.cs" />
     <Compile Include="Logic\NaiveBayes.cs" />
     <Compile Include="Clases\Palabra.cs" />

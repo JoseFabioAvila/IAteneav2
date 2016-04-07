@@ -39,7 +39,7 @@ namespace IAteneav2
                 }
             }
             //Sirve para evitar que se caiga al xDDD
-            ListaWebsites.SelectedIndex = 2;
+            ListaWebsites.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -129,8 +129,7 @@ namespace IAteneav2
                 {
                     text += word + " "; // "\n\n";
                 }
-                TextBox1.Text = text;
-
+                analisis(text);
             }
             else
             {
@@ -138,6 +137,11 @@ namespace IAteneav2
             }
 
         }
-
+        private void analisis(String x)
+        {
+            Logic.NaiveBayes naiveBayes = new Logic.NaiveBayes(x);
+            Logic.Aprendizaje claseAprender = new Logic.Aprendizaje(naiveBayes);
+            TextBox1.Text = claseAprender.Print;
+        }
     }
 }

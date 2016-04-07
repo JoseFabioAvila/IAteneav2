@@ -36,12 +36,21 @@ namespace IAteneav2.Views
 
         private void imprimirLista()
         {
+            string x = "";
             palabras = inst.palabrasDirectorios;
             TextBox1.Text += "\n\n\n\n\n";
             foreach (string palabra in palabras)
             {
-                TextBox1.Text += palabra + "\n";
+                x += palabra + " ";
             }
+            analisis(x);
+        }
+
+        private void analisis(String x)
+        {
+            Logic.NaiveBayes naiveBayes = new Logic.NaiveBayes(x);
+            Logic.Aprendizaje claseAprender = new Logic.Aprendizaje(naiveBayes);
+            TextBox1.Text = claseAprender.Print;
         }
 
         protected void analizarEnDisco(object sender, EventArgs e)
