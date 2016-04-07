@@ -44,7 +44,6 @@ namespace IAteneav2
             }
             //Sirve para evitar que se caiga al xDDD
             ListaWebsites.SelectedIndex = 0;
-
         }
 
         /// <summary>
@@ -109,20 +108,20 @@ namespace IAteneav2
         protected void analizarEnTodos(object sender, EventArgs e)
         {
             TextBox1.Text = ""; //borrar luego
-
+            string text = "";
             for (int i = 0; i < urls.Count; i++)
             {
                 TextBox1.Text += "///////////////////////////////////////////////////////////\n\n\n";
 
                 Logic.AnalizarWebsites inst = new Logic.AnalizarWebsites();
                 LinkedList<String> lista = inst.genListaP(urls.ElementAt(i).Url.ToString());
-                string text = "";
+                
                 foreach (string word in lista)
                 {
                     text += word + "\n";
                 }
-                TextBox1.Text += text;
             }
+            analisis(text);
         }
 
         /// <summary>
@@ -132,18 +131,6 @@ namespace IAteneav2
         /// <param name="e"></param>
         protected void analizarEnSite(object sender, EventArgs e)
         {
-            //TextBox1.Text = ""; //borrar luego
-
-            //foreach (ListItem li in ListaWebsites.Items)
-            //{
-            //    if (li.Selected == true)
-            //    {
-            //        // Response.Write();
-            //        //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Error al agregar el website')", true);
-            //        TextBox1.Text = ListaWebsites.SelectedItem.Value;
-            //    }
-            //}
-
 
             // Is anything selected? The index is -1 if nothing is selected.
             if (ListaWebsites.SelectedItem != null)
@@ -156,9 +143,7 @@ namespace IAteneav2
                 {
                     text += word + " "; // "\n\n";
                 }
-                TextBox1.Text = text;
-                Response.Write(text);
-
+                analisis(text);
             }
             else
             {
@@ -166,6 +151,11 @@ namespace IAteneav2
             }
 
         }
-
+        private void analisis(String x)
+        {
+            Logic.NaiveBayes naiveBayes = new Logic.NaiveBayes(x);
+            Logic.Aprendizaje claseAprender = new Logic.Aprendizaje(naiveBayes);
+            TextBox1.Text = claseAprender.Print;
+        }
     }
 }

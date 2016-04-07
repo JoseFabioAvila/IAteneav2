@@ -38,18 +38,30 @@ namespace IAteneav2.Views
         
         public void imprimir()
         {
+            string x = "";
             if (lista != null)
             {
                 foreach (string palabra in lista)
                 {
-                    TextBox1.Text += palabra + "\n";
+                    x +="[ " + palabra + " ]";
                 }
+                
+                analisis(x);
+
+
+                TextBox1.Text += "\n\n Publicaciones: " + x;
             }
             else
             {
                 TextBox1.Text = "error";
             }
+        }
 
+        private void analisis(String x)
+        {
+            Logic.NaiveBayes naiveBayes = new Logic.NaiveBayes(x);
+            Logic.Aprendizaje claseAprender = new Logic.Aprendizaje(naiveBayes);
+            TextBox1.Text = claseAprender.Print;
         }
     }
 }

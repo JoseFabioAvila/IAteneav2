@@ -13,7 +13,7 @@
             <asp:TableRow>
                 <asp:TableCell>
                     <asp:FileUpload id="FileUploadControl" runat="server"  CssClass="well"/>
-                    <asp:Button ID="Button3" OnClick="analizarEnDisco2" runat="server" Text="Entrenar" CssClass="btn btn-lg btn-success"/>
+                    <asp:Button ID="Button3" OnClick="analizarEnDisco2" runat="server" Text="Analizar" CssClass="btn btn-lg btn-success"/>
                     <asp:Button ID="Button2" OnClick="guardar" runat="server" Text="Guardar" CssClass="btn btn-lg btn-success"/>
                 </asp:TableCell>
             </asp:TableRow>

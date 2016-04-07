@@ -15,6 +15,7 @@
                     <asp:TextBox ID="TextBox2" runat="server" Width="1000"></asp:TextBox>
                     <br />
                     <asp:Button ID="AnalizarAMM" OnClick="analizarArchivosMM" runat="server" Text="Analizar archivos de mensajes masivos" CssClass="btn btn-lg btn-success"/>
+                    <asp:Button ID="Button1" OnClick="analizarArchivosMM2" runat="server" Text="Leer archivos de mensajes masivos" CssClass="btn btn-lg btn-success"/>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>

@@ -32,11 +32,20 @@ namespace IAteneav2.Views
         {
             palabras.Clear();
             palabras = ins.palabrasTexto(TextBox2.Text);
-
+            String x = "";
             foreach (string palabra in palabras)
             {
-                TextBox1.Text += palabra + "\n\n";
+                x += palabra + " ";
             }
+
+            analisis(x);
+        }
+
+        private void analisis(String x)
+        {
+            Logic.NaiveBayes naiveBayes = new Logic.NaiveBayes(x);
+            Logic.Aprendizaje claseAprender = new Logic.Aprendizaje(naiveBayes);
+            TextBox1.Text = claseAprender.Print;
         }
     }
 }

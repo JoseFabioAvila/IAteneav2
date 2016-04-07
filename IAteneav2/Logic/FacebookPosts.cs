@@ -19,7 +19,7 @@ namespace IAteneav2.Logic
             try
             {
                 LinkedList<string> lista = new LinkedList<string>();
-                var client = new FacebookClient("CAAOPIFhMpWUBAKhp0WOUM9h5g7ML6w86KbspZC0xD3S21wCcA4ig9wyZCStYpDLjr52UuRHonhbXNFzIiVY49mZBPaaH7lE3PMnRjjhKf04XHhoJILCEKLZAbsZCioUnMnzPlQmHefjldt59vH70kYWhQrCpYNrfIQCpP3dsxo7T4bImrdyWdEgCs6L2HjYIN6y52BfxoowZDZD");
+                var client = new FacebookClient("CAAIVZCRFP4h0BAIv50KUa5MJIZC69OwO5VxEh9qcDCXJhg5XNGcVnb6OtRn1OvNefXE023fzbqZA8ZCU44hfFpL8onMMUTii7EWDzwCyOKdabWrbApXIPLx0zEamdlkAZBJnHn9AVGWqsemj0pd7ZB7iz5vVkZAz58DSNXZAwsDycKkcueKb1E8XQFRlOTDEBsEu3SZCa4UO0WgZDZD");
                 dynamic result = client.Get("/me/posts");
 
                 //all the posts and their information is strored in result.data not in result
