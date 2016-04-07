@@ -12,7 +12,7 @@
             </asp:TableHeaderRow>
             <asp:TableRow>
                 <asp:TableCell>
-                    <asp:TextBox ID="TextBox2" runat="server" TextMode="MultiLine" Width="1000" Height="800"></asp:TextBox>
+                    <asp:TextBox ID="TextBox2" runat="server" TextMode="MultiLine" Width="1000" Height="400"></asp:TextBox>
                     <asp:Button ID="AnalizarTxt" OnClick="AnalizarTxt_Click" runat="server" Text="Analizar texto" CssClass="btn btn-lg btn-success"/>
                 </asp:TableCell>
             </asp:TableRow>
